@@ -1,0 +1,32 @@
+{
+  "publisher": "jamesthurley",
+  "name": "github_commit_graph",
+  "version": "1.0.0",
+  "input": {
+    "properties": {
+      "width": { "type": "uint32" },
+      "height": { "type": "uint32" },
+      "username": { "type": "string" }
+    },
+    "optionalProperties": {
+      "margin": { "type": "uint32" },
+      "githubToken": { "type": "string" }
+    }
+  },
+  "output": "canvas",
+  "rigging": {
+    "output": {
+      "component": "slipwayhq.jsx.0.5.1",
+      "allow": [
+        { "permission": "registry_components" },
+        { "permission": "fonts" }
+      ],
+      "input": {
+        "width": "$$.input.width",
+        "height": "$$.input.height",
+        "data": "$$.input.run.data",
+        "jsx": "$$.input.run.jsx"
+      }
+    }
+  }
+}
