@@ -10,6 +10,7 @@
     },
     "optionalProperties": {
       "github_token": { "type": "string" },
+      "weeks": { "type": "uint32" },
       "theme": { 
         "optionalProperties": {
           "horizontal_padding": { "type": "uint32" },

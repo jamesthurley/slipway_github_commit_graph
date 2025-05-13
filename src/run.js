@@ -3,15 +3,18 @@
  * @param {{
  *   width: number,
  *   height: number,
- *   horizontal_padding: number,
- *   vertical_padding: number,
- *   background_color: string,
- *   font_color: string,
- *   day_border_color: string,
- *   day_border_width: number,
- *   day_palette: string[],
  *   username: string,
- *   github_token: string
+ *   github_token: string,
+ *   weeks: number,
+ *   theme: {
+ *     horizontal_padding: number,
+ *     vertical_padding: number,
+ *     background_color: string,
+ *     font_color: string,
+ *     day_border_color: string,
+ *     day_border_width: number,
+ *     day_palette: string[],
+ *   }
  * }} input 
  * @returns {Promise<{
  *   data:{
@@ -31,10 +34,12 @@
  *   jsx: string,
  * }>}
  */
-export async function run(input){
+export async function run(input) {
+  let weeks = input.weeks || 52;
   let data = await getGitHubContributions(
     input.github_token || slipway_host.env('GITHUB_TOKEN'),
     input.username,
+    weeks,
   );
 
   let theme = input.theme || {};
@@ -44,8 +49,8 @@ export async function run(input){
   const boxVerticalMargin = 1;
   const boxHorizontalMargin = 3;
   const borderWidth = theme.day_border_width || 1;
-  const drawWidth = input.width - drawMarginWidth*2;
-  const drawHeight = input.height - drawMarginHeight*2;
+  const drawWidth = input.width - drawMarginWidth * 2;
+  const drawHeight = input.height - drawMarginHeight * 2;
   const boxWidth = Math.floor(drawWidth / (data.weeks.length + 1)) - borderWidth - boxHorizontalMargin;
   const boxHeight = Math.min(boxWidth, Math.floor(drawHeight / 7) - borderWidth - boxVerticalMargin);
 
@@ -67,7 +72,8 @@ export async function run(input){
   ];
   data.backgroundColor = theme.background_color || '#ffffff';
   data.fontColor = theme.font_color || '#000000';
-  
+  data.weekCount = weeks;
+
   return {
     data,
     jsx,
@@ -90,12 +96,12 @@ export async function run(input){
  *   }[]
  * }>}
  */
-export async function getGitHubContributions(githubToken, username) {
+export async function getGitHubContributions(githubToken, username, weeks) {
   const today = new Date();
-  const oneYearAgo = new Date(today);
-  oneYearAgo.setFullYear(today.getFullYear() - 1);
+  const weeksAgo = new Date(today);
+  weeksAgo.setDate(today.getDate() - weeks * 7);
 
-  const from = oneYearAgo.toISOString();
+  const from = weeksAgo.toISOString();
   const to = today.toISOString();
 
   const query = `

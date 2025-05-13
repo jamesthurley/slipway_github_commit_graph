@@ -87,12 +87,13 @@ Input:
 ```json
 {
   "width": 800,
-  "height": 190,
+  "height": 400,
   "username": "<some_github_username>",
   "github_token": "<your_github_personal_access_token>",
+  "weeks": 40,
   "theme": {
     "horizontal_padding": 22,
-    "vertical_padding": 22,
+    "vertical_padding": 10,
     "background_color": "#000",
     "font_color": "#fff",
     "day_border_color": "#555",
@@ -112,7 +113,7 @@ Output:
 {
   "canvas": {
     "width": 800,
-    "height": 190,
+    "height": 400,
     "data": "<encoded_rgba_bytes_omitted>"
   }
 }
