@@ -22,7 +22,7 @@
   "output": "canvas",
   "rigging": {
     "output": {
-      "component": "slipwayhq.jsx.0.5.2",
+      "component": "slipwayhq.jsx.0.5.3",
       "allow": [
         { "permission": "registry_components" },
         { "permission": "fonts" }
@@ -32,6 +32,7 @@
         "height": "$$.input.height",
         "data": "$$.input.run.data",
         "jsx": "$$.input.run.jsx",
+        "utils_js": "$$.input.run.utils_js",
         "background_color": "$$?input.background_color"
       }
     }

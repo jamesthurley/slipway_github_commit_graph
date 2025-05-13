@@ -29,13 +29,7 @@
               width: data.boxWidth,
               height: data.boxHeight,
               margin: 1,
-              background: ((count) => {
-                let paletteIndex = Math.floor(count / 2);
-                if (paletteIndex >= data.palette.length) {
-                  return data.palette[data.palette.length - 1];
-                }
-                return data.palette[paletteIndex];
-              })(day.contributionCount),
+              background: utils.getContributionCountColor(day.contributionCount),
               borderRadius: 2,
               border: data.border,
             }}

@@ -48,6 +48,7 @@ export async function run(input){
   const boxHeight = Math.min(boxWidth, Math.floor(drawHeight / 7) - borderWidth - boxVerticalMargin);
 
   let jsx = await slipway_host.load_text('', 'graph.jsx');
+  let utils_js = await slipway_host.load_text('', 'utils.js');
 
   data.username = input.username;
   data.horizontalMargin = drawMarginWidth;
@@ -68,6 +69,7 @@ export async function run(input){
   return {
     data,
     jsx,
+    utils_js,
   }
 }
 
