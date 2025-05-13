@@ -1,6 +1,16 @@
-<div style={{ display: "flex", flexDirection: "column", margin: data.margin }}>
-  <h2 style={{marginTop: 0, marginBottom: 0}}>{data.totalContributions}</h2>
-  <p style={{marginTop: 0, marginBottom: 10}}>Contributions in the last year</p>
+<div style={{ 
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    height: "100%",
+    paddingLeft: data.horizontalMargin,
+    paddingRight: data.horizontalMargin,
+    paddingTop: data.verticalMargin,
+    paddingBottom: data.verticalMargin,
+    background: data.backgroundColor,
+    }}>
+  <h2 style={{marginTop: 0, marginBottom: 0, color: data.fontColor}}>{data.totalContributions}</h2>
+  <p style={{marginTop: 0, marginBottom: 10, color: data.fontColor}}>Contributions in the last year</p>
   <div style={{ display: "flex", flexDirection: "row"}}>
     {data.weeks.map((week, weekIdx) => (
       <div
@@ -20,14 +30,14 @@
               height: data.boxHeight,
               margin: 1,
               background: ((count) => {
-                if (count === 0) return "#ebedf0";
-                if (count < 2) return "#9be9a8";
-                if (count < 4) return "#40c463";
-                if (count < 6) return "#30a14e";
-                return "#216e39";
+                let paletteIndex = Math.floor(count / 2);
+                if (paletteIndex >= data.palette.length) {
+                  return data.palette[data.palette.length - 1];
+                }
+                return data.palette[paletteIndex];
               })(day.contributionCount),
               borderRadius: 2,
-              border: "1px solid #d1d5da",
+              border: data.border,
             }}
           ></div>
         ))}

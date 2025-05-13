@@ -3,15 +3,24 @@
  * @param {{
  *   width: number,
  *   height: number,
- *   margin: number,
+ *   horizontal_padding: number,
+ *   vertical_padding: number,
+ *   background_color: string,
+ *   font_color: string,
+ *   day_border_color: string,
+ *   day_border_width: number,
+ *   day_palette: string[],
  *   username: string,
- *   githubToken: string
+ *   github_token: string
  * }} input 
  * @returns {Promise<{
  *   data:{
+ *     username: string,
+ *     margin: string,
  *     boxWidth: number,
  *     boxHeight: number,
- *     username: string,
+ *     border: string,
+ *     palette: string[],
  *     totalContributions: number,
  *     weeks: {
  *       contributionDays: {
@@ -24,25 +33,37 @@
  */
 export async function run(input){
   let data = await getGitHubContributions(
-    input.githubToken || slipway_host.env('GITHUB_TOKEN'),
+    input.github_token || slipway_host.env('GITHUB_TOKEN'),
     input.username,
   );
 
-  const drawMarginWidth = input.margin || 10;
+  const drawMarginWidth = input.horizontal_padding || 10;
+  const drawMarginHeight = input.vertical_padding || 10;
   const boxVerticalMargin = 1;
   const boxHorizontalMargin = 3;
-  const borderWidth = 1;
+  const borderWidth = input.day_border_width || 1;
   const drawWidth = input.width - drawMarginWidth*2;
-  const drawHeight = input.height - drawMarginWidth*2;
+  const drawHeight = input.height - drawMarginHeight*2;
   const boxWidth = Math.floor(drawWidth / (data.weeks.length + 1)) - borderWidth - boxHorizontalMargin;
   const boxHeight = Math.min(boxWidth, Math.floor(drawHeight / 7) - borderWidth - boxVerticalMargin);
 
   let jsx = await slipway_host.load_text('', 'graph.jsx');
 
   data.username = input.username;
-  data.margin = drawMarginWidth;
+  data.horizontalMargin = drawMarginWidth;
+  data.verticalMargin = drawMarginHeight;
   data.boxWidth = boxWidth;
   data.boxHeight = boxHeight;
+  data.border = `${input.day_border_width || 1}px solid ${input.day_border_color || '#d1d5da'}`;
+  data.palette = input.day_palette || [
+    '#ebedf0',
+    '#9be9a8',
+    '#40c463',
+    '#30a14e',
+    '#216e39',
+  ];
+  data.backgroundColor = input.background_color || '#ffffff';
+  data.fontColor = input.font_color || '#000000';
   
   return {
     data,

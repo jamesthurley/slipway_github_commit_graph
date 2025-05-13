@@ -5,6 +5,25 @@ of GitHub contributions as a commit graph.
 
 The output is a rendered commit graph as a canvas.
 
+## Required Inputs
+
+- `width`: The width of the output.
+- `height`: The height of the output.
+- `username`: The GitHub username you want to get the commit graph for.
+
+## Optional Inputs
+
+- `github_token`: A GitHub personal access token which has sufficient permissions to fetch the data.
+Alternatively use the `GITHUB_TOKEN` environment variable.
+- `data`: Data which the JSX can bind to.
+- `horizontal_padding`: The padding to the left and right of the commit graph.
+- `vertical_padding`: The padding above and below the commit graph.
+- `background_color`: The background color.
+- `font_color`: The font color.
+- `day_border_width`: The border width of the day boxes.
+- `day_border_color`: The border color of the day boxes.
+- `day_palette`: The palette to use for the day boxes. This should be an array of colors.
+
 ## Suggested Permissions
 
 ### `--allow-http-prefix "https://api.github.com/"`
@@ -40,9 +59,10 @@ Input:
 {
   "width": 800,
   "height": 190,
-  "margin": 22,
+  "horizontal_padding": 22,
+  "vertical_padding": 22,
   "username": "<some_github_username>",
-  "githubToken": "<your_github_personal_access_token>"
+  "github_token": "<your_github_personal_access_token>"
 }
 ```
 
@@ -50,11 +70,48 @@ Output:
 ```json
 {
   "canvas": {
-    "data": "<encoded_rgba_bytes_omitted>",
-    "width": 400,
-    "height": 300
+    "width": 800,
+    "height": 190,
+    "data": "<encoded_rgba_bytes_omitted>"
   }
 }
 ```
 
 ![Example Output](example-output.png)
+
+
+
+Input:
+```json
+{
+  "width": 800,
+  "height": 190,
+  "horizontal_padding": 22,
+  "vertical_padding": 22,
+  "background_color": "#000",
+  "font_color": "#fff",
+  "day_border_color": "#555",
+  "day_palette": [
+      "#000",
+      "#666",
+      "#aaa",
+      "#ddd",
+      "#fff"
+  ],
+  "username": "<some_github_username>",
+  "github_token": "<your_github_personal_access_token>"
+}
+```
+
+Output:
+```json
+{
+  "canvas": {
+    "width": 800,
+    "height": 190,
+    "data": "<encoded_rgba_bytes_omitted>"
+  }
+}
+```
+
+![Example Output](example-output-dark.png)

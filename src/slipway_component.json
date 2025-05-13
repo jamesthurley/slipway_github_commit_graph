@@ -9,14 +9,20 @@
       "username": { "type": "string" }
     },
     "optionalProperties": {
-      "margin": { "type": "uint32" },
-      "githubToken": { "type": "string" }
+      "github_token": { "type": "string" },
+      "horizontal_padding": { "type": "uint32" },
+      "vertical_padding": { "type": "uint32" },
+      "background_color": { "type": "string" },
+      "font_color": { "type": "string" },
+      "day_border_width": { "type": "uint32" },
+      "day_border_color": { "type": "string" },
+      "day_palette": { "elements": { "type": "string" } }
     }
   },
   "output": "canvas",
   "rigging": {
     "output": {
-      "component": "slipwayhq.jsx.0.5.1",
+      "component": "slipwayhq.jsx.0.5.2",
       "allow": [
         { "permission": "registry_components" },
         { "permission": "fonts" }
@@ -25,7 +31,8 @@
         "width": "$$.input.width",
         "height": "$$.input.height",
         "data": "$$.input.run.data",
-        "jsx": "$$.input.run.jsx"
+        "jsx": "$$.input.run.jsx",
+        "background_color": "$$?input.background_color"
       }
     }
   }
