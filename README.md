@@ -87,7 +87,7 @@ Input:
 ```json
 {
   "width": 800,
-  "height": 400,
+  "height": 190,
   "username": "<some_github_username>",
   "github_token": "<your_github_personal_access_token>",
   "weeks": 40,
@@ -113,7 +113,7 @@ Output:
 {
   "canvas": {
     "width": 800,
-    "height": 400,
+    "height": 190,
     "data": "<encoded_rgba_bytes_omitted>"
   }
 }
