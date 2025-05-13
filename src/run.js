@@ -37,11 +37,13 @@ export async function run(input){
     input.username,
   );
 
-  const drawMarginWidth = input.horizontal_padding || 10;
-  const drawMarginHeight = input.vertical_padding || 10;
+  let theme = input.theme || {};
+
+  const drawMarginWidth = theme.horizontal_padding || 10;
+  const drawMarginHeight = theme.vertical_padding || 10;
   const boxVerticalMargin = 1;
   const boxHorizontalMargin = 3;
-  const borderWidth = input.day_border_width || 1;
+  const borderWidth = theme.day_border_width || 1;
   const drawWidth = input.width - drawMarginWidth*2;
   const drawHeight = input.height - drawMarginHeight*2;
   const boxWidth = Math.floor(drawWidth / (data.weeks.length + 1)) - borderWidth - boxHorizontalMargin;
@@ -55,16 +57,16 @@ export async function run(input){
   data.verticalMargin = drawMarginHeight;
   data.boxWidth = boxWidth;
   data.boxHeight = boxHeight;
-  data.border = `${input.day_border_width || 1}px solid ${input.day_border_color || '#d1d5da'}`;
-  data.palette = input.day_palette || [
+  data.border = `${theme.day_border_width || 1}px solid ${theme.day_border_color || '#d1d5da'}`;
+  data.palette = theme.day_palette || [
     '#ebedf0',
     '#9be9a8',
     '#40c463',
     '#30a14e',
     '#216e39',
   ];
-  data.backgroundColor = input.background_color || '#ffffff';
-  data.fontColor = input.font_color || '#000000';
+  data.backgroundColor = theme.background_color || '#ffffff';
+  data.fontColor = theme.font_color || '#000000';
   
   return {
     data,

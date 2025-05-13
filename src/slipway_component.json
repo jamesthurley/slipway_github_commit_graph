@@ -10,13 +10,17 @@
     },
     "optionalProperties": {
       "github_token": { "type": "string" },
-      "horizontal_padding": { "type": "uint32" },
-      "vertical_padding": { "type": "uint32" },
-      "background_color": { "type": "string" },
-      "font_color": { "type": "string" },
-      "day_border_width": { "type": "uint32" },
-      "day_border_color": { "type": "string" },
-      "day_palette": { "elements": { "type": "string" } }
+      "theme": { 
+        "optionalProperties": {
+          "horizontal_padding": { "type": "uint32" },
+          "vertical_padding": { "type": "uint32" },
+          "background_color": { "type": "string" },
+          "font_color": { "type": "string" },
+          "day_border_width": { "type": "uint32" },
+          "day_border_color": { "type": "string" },
+          "day_palette": { "elements": { "type": "string" } }
+        }
+      }
     }
   },
   "output": "canvas",
@@ -33,7 +37,7 @@
         "data": "$$.input.run.data",
         "jsx": "$$.input.run.jsx",
         "utils_js": "$$.input.run.utils_js",
-        "background_color": "$$?input.background_color"
+        "background_color": "$$?input.theme.background_color"
       }
     }
   }

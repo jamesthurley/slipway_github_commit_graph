@@ -15,14 +15,14 @@ The output is a rendered commit graph as a canvas.
 
 - `github_token`: A GitHub personal access token which has sufficient permissions to fetch the data.
 Alternatively use the `GITHUB_TOKEN` environment variable.
-- `data`: Data which the JSX can bind to.
-- `horizontal_padding`: The padding to the left and right of the commit graph.
-- `vertical_padding`: The padding above and below the commit graph.
-- `background_color`: The background color.
-- `font_color`: The font color.
-- `day_border_width`: The border width of the day boxes.
-- `day_border_color`: The border color of the day boxes.
-- `day_palette`: The palette to use for the day boxes. This should be an array of colors.
+- `theme`: An object containing zero or more of the following properties:
+  - `horizontal_padding`: The padding to the left and right of the commit graph.
+  - `vertical_padding`: The padding above and below the commit graph.
+  - `background_color`: The background color.
+  - `font_color`: The font color.
+  - `day_border_width`: The border width of the day boxes.
+  - `day_border_color`: The border color of the day boxes.
+  - `day_palette`: The palette to use for the day boxes. This should be an array of colors.
 
 ## Suggested Permissions
 
@@ -51,7 +51,7 @@ which itself loads other components, to render the chart.
 
 Test the component by running the following command and pasting in the input when prompted:
 ```
-slipway run-component "jamesthurley.github_commit_graph.1.0.0" --allow-http-prefix "https://api.github.com/" --allow-fonts --allow-registry-components
+slipway run-component "jamesthurley.github_commit_graph.1.1.0" --allow-http-prefix "https://api.github.com/" --allow-fonts --allow-registry-components
 ```
 
 Input:
@@ -59,10 +59,12 @@ Input:
 {
   "width": 800,
   "height": 190,
-  "horizontal_padding": 22,
-  "vertical_padding": 22,
   "username": "<some_github_username>",
-  "github_token": "<your_github_personal_access_token>"
+  "github_token": "<your_github_personal_access_token>",
+  "theme": {
+    "horizontal_padding": 22,
+    "vertical_padding": 22
+  }
 }
 ```
 
@@ -86,20 +88,22 @@ Input:
 {
   "width": 800,
   "height": 190,
-  "horizontal_padding": 22,
-  "vertical_padding": 22,
-  "background_color": "#000",
-  "font_color": "#fff",
-  "day_border_color": "#555",
-  "day_palette": [
-      "#000",
-      "#666",
-      "#aaa",
-      "#ddd",
-      "#fff"
-  ],
   "username": "<some_github_username>",
-  "github_token": "<your_github_personal_access_token>"
+  "github_token": "<your_github_personal_access_token>",
+  "theme": {
+    "horizontal_padding": 22,
+    "vertical_padding": 22,
+    "background_color": "#000",
+    "font_color": "#fff",
+    "day_border_color": "#555",
+    "day_palette": [
+        "#000",
+        "#666",
+        "#aaa",
+        "#ddd",
+        "#fff"
+    ],
+  }
 }
 ```
 
