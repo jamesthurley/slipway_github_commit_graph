@@ -9,8 +9,8 @@
     paddingBottom: data.verticalMargin,
     background: data.backgroundColor,
     }}>
-  <h2 style={{marginTop: 0, marginBottom: 0, color: data.fontColor}}>{data.totalContributions}</h2>
-  <p style={{marginTop: 0, marginBottom: 10, color: data.fontColor}}>Contributions in the last {data.weekCount} weeks</p>
+  <h2 style={{marginTop: 0, marginBottom: 0, color: data.fontColor, fontSize: data.countFontSize}}>{data.totalContributions}</h2>
+  <p style={{marginTop: 0, marginBottom: 10, color: data.fontColor, fontSize: data.descriptionFontSize}}>Contributions in the last {data.weekCount} weeks</p>
   <div style={{ display: "flex", flexDirection: "row"}}>
     {data.weeks.map((week, weekIdx) => (
       <div

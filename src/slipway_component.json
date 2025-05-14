@@ -19,7 +19,9 @@
           "font_color": { "type": "string" },
           "day_border_width": { "type": "uint32" },
           "day_border_color": { "type": "string" },
-          "day_palette": { "elements": { "type": "string" } }
+          "day_palette": { "elements": { "type": "string" } },
+          "count_font_size": { "type": "uint32" },
+          "description_font_size": { "type": "uint32" }
         }
       }
     }

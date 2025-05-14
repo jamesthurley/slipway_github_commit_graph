@@ -51,7 +51,7 @@ which itself loads other components, to render the chart.
 
 Test the component by running the following command and pasting in the input when prompted:
 ```
-slipway run-component "jamesthurley.github_commit_graph.1.1.0" --allow-http-prefix "https://api.github.com/" --allow-fonts --allow-registry-components
+slipway run-component "jamesthurley.github_commit_graph.1.2.0" --allow-http-prefix "https://api.github.com/" --allow-fonts --allow-registry-components
 ```
 
 Input:
@@ -87,33 +87,34 @@ Input:
 ```json
 {
   "width": 800,
-  "height": 190,
+  "height": 400,
   "username": "<some_github_username>",
   "github_token": "<your_github_personal_access_token>",
-  "weeks": 40,
+  "weeks": 20,
   "theme": {
-    "horizontal_padding": 22,
-    "vertical_padding": 10,
+    "horizontal_padding": 26,
+    "vertical_padding": 30,
     "background_color": "#000",
     "font_color": "#fff",
     "day_border_color": "#555",
     "day_palette": [
-        "#000",
-        "#666",
-        "#aaa",
-        "#ddd",
-        "#fff"
+      "#000",
+      "#666",
+      "#aaa",
+      "#ddd",
+      "#fff"
     ],
+    "count_font_size": 60,
+    "description_font_size": 30
   }
-}
-```
+}```
 
 Output:
 ```json
 {
   "canvas": {
     "width": 800,
-    "height": 190,
+    "height": 400,
     "data": "<encoded_rgba_bytes_omitted>"
   }
 }

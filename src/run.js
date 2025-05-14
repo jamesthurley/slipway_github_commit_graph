@@ -14,6 +14,8 @@
  *     day_border_color: string,
  *     day_border_width: number,
  *     day_palette: string[],
+ *     count_font_size: number,
+ *     description_font_size: number,
  *   }
  * }} input 
  * @returns {Promise<{
@@ -73,6 +75,8 @@ export async function run(input) {
   data.backgroundColor = theme.background_color || '#ffffff';
   data.fontColor = theme.font_color || '#000000';
   data.weekCount = weeks;
+  data.countFontSize = input.theme.count_font_size || 26;
+  data.descriptionFontSize = input.theme.description_font_size || 16;
 
   return {
     data,
