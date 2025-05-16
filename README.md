@@ -107,7 +107,8 @@ Input:
     "count_font_size": 60,
     "description_font_size": 30
   }
-}```
+}
+```
 
 Output:
 ```json

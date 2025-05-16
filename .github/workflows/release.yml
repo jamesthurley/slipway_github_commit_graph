@@ -32,8 +32,7 @@ jobs:
     - prerelease
 
     steps:
-      - name: Install just
-        run: cargo install just
+      - uses: extractions/setup-just@v3
 
       - name: Check out code
         uses: actions/checkout@v4
